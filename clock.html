@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script> 
+    $(function(){
+      $("#header").load("header.html"); 
+    });
+    </script> 
+<html>
+  <div id="header"></div>
+    <title>CLOCK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+<button class="js-toggle-fullscreen-btn toggle-fullscreen-btn" aria-label="Enter fullscreen mode" hidden>
+	<svg class="toggle-fullscreen-svg" width="28" height="28" viewBox="-2 -2 28 28">
+		<g class="icon-fullscreen-enter">
+			<path d="M 2 9 v -7 h 7" />
+			<path d="M 22 9 v -7 h -7" />
+			<path d="M 22 15 v 7 h -7" />
+			<path d="M 2 15 v 7 h 7" />
+		</g>
+		
+		<g class="icon-fullscreen-leave">
+			<path d="M 24 17 h -7 v 7" />
+			<path d="M 0 17 h 7 v 7" />
+			<path d="M 0 7 h 7 v -7" />
+			<path d="M 24 7 h -7 v -7" />
+		</g>
+	</svg>
+</button>
+  <head>
+    <meta charset="utf-8">  
+  </head>  
+    <div id="time" class="time"></div>
+    <div id="date" class="date"></div>
+  <style>
+    .toggle-fullscreen-btn {
+	position: fixed;
+	z-index: 10000;
+	top: 10px;
+	right: 10px;
+	border: 0;
+	padding: 0;
+	background: none;
+	cursor: pointer;
+	outline: none;
+}
+
+
+.toggle-fullscreen-svg {
+	display: block;
+	height: auto;
+}
+
+.toggle-fullscreen-svg path {
+	transform-box: view-box;
+	transform-origin: 12px 12px;
+	fill: none;
+	stroke: hsl(225, 10%, 8%);
+	stroke-width: 4;
+	transition: .15s;
+}
+
+
+.toggle-fullscreen-btn:hover path:nth-child(1),
+.toggle-fullscreen-btn:focus path:nth-child(1) {
+	transform: translate(-2px, -2px);
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(2),
+.toggle-fullscreen-btn:focus path:nth-child(2) {
+	transform: translate(2px, -2px);
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(3),
+.toggle-fullscreen-btn:focus path:nth-child(3) {
+	transform: translate(2px, 2px);
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(4),
+.toggle-fullscreen-btn:focus path:nth-child(4) {
+	transform: translate(-2px, 2px);
+}
+
+
+.toggle-fullscreen-btn:not(.on) .icon-fullscreen-leave {
+	display: none;
+}
+
+.toggle-fullscreen-btn.on .icon-fullscreen-enter {
+	display: none;
+}
+#time,#date {
+    font-family: "Orbitron", sans-serif;
+    text-align: center;
+    position: relative;
+    top: 50px;
+}
+body{
+    background-color: white;
+}
+.date{
+    font-size: 30px; 
+    color: black;
+}
+.time{
+    font-size: 100px;
+    font-weight: bold;
+    color: black; 
+}
+#text{
+    font-size: 20px; 
+    color: black; 
+}
+
+    * {
+
+  margin: 0px;
+
+  padding: 0px;
+
+  box-sizing: border-box;
+
+}
+
+.body-text {
+
+  display: flex;
+
+  font-family: "Montserrat", sans-serif;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-top: 250px;
+
+}
+
+nav {
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  min-height: 8vh;
+
+  background-color: teal;
+
+  font-family: "Montserrat", sans-serif;
+
+}
+
+.heading {
+
+  color: white;
+
+  text-transform: uppercase;
+
+  letter-spacing: 5px;
+
+  font-size: 20px;
+
+}
+
+.nav-links {
+
+  display: flex;
+
+  justify-content: space-around;
+
+  width: 30%;
+
+}
+
+.nav-links li {
+
+  list-style: none;
+
+}
+
+.nav-links a {
+
+  color: white;
+
+  text-decoration: none;
+
+  letter-spacing: 3px;
+
+  font-weight: bold;
+
+  font-size: 14px;
+
+  padding: 14px 16px;
+
+}
+
+.nav-links a:hover:not(.active) {
+
+  background-color: lightseagreen;
+
+}
+
+.nav-links li a.active {
+
+  background-color: #4caf50;
+
+}
+    </style>
+    <script>
+      if(document.fullscreenEnabled || document.webkitFullscreenEnabled) {
+	const toggleBtn = document.querySelector('.js-toggle-fullscreen-btn');
+
+	const styleEl = document.createElement('link');
+	styleEl.setAttribute('rel', 'stylesheet');
+	styleEl.setAttribute('href', 'https://codepen.io/tiggr/pen/poJoLyW.css');
+	styleEl.addEventListener('load', function() {
+		toggleBtn.hidden = false;
+	});
+	document.head.appendChild(styleEl);
+	
+	toggleBtn.addEventListener('click', function() {
+		if(document.fullscreen) {
+			document.exitFullscreen();
+		} else if(document.webkitFullscreenElement) {
+			document.webkitCancelFullScreen()
+		} else if(document.documentElement.requestFullscreen) {
+			document.documentElement.requestFullscreen();
+		} else {
+			document.documentElement.webkitRequestFullScreen();
+		}
+	});
+	
+	document.addEventListener('fullscreenchange', handleFullscreen);
+	document.addEventListener('webkitfullscreenchange', handleFullscreen);
+	
+	
+	function handleFullscreen() {
+		if(document.fullscreen || document.webkitFullscreenElement) {
+			toggleBtn.classList.add('on');
+			toggleBtn.setAttribute('aria-label', 'Exit fullscreen mode');
+		} else {
+			toggleBtn.classList.remove('on');
+			toggleBtn.setAttribute('aria-label', 'Enter fullscreen mode');
+		}
+	}
+}
+
+function setClock(){
+  
+    var dateInfo = new Date(); 
+    var hour = modifyNumber(dateInfo.getHours());
+    var min = modifyNumber(dateInfo.getMinutes());
+    var sec = modifyNumber(dateInfo.getSeconds());
+    var year = dateInfo.getFullYear();
+    var month = dateInfo.getMonth()+1; //monthIndex를 반환해주기 때문에 1을 더해준다.
+    var date = dateInfo.getDate();
+    document.getElementById("time").innerHTML = hour + ":" + min  + ":" + sec;
+    document.getElementById("date").innerHTML = year + "년 " + month + "월 " + date + "일";
+    
+}
+function modifyNumber(time){
+    if(parseInt(time)<10){
+        return "0"+ time;
+    }
+    else
+        return time;
+}
+window.onload = function(){
+    setClock();
+    setInterval(setClock,1000); //1초마다 setClock 함수 실행
+}
+  </script>
+    </body>
+  </body>
+
+</html>
