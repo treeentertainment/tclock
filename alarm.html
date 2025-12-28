@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script> 
+    $(function(){
+      $("#header").load("header.html"); 
+    });
+    </script> 
+  <body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Alarm</title>
+    <div id="header"></div>
+	  <br><br><br>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+   <div id="main">
+    <audio controls id="music" hidden>
+
+<source src="https://od.lk/s/NjZfNTE3ODk2MTNf/digital-watch-alarm-tomas-herudek-1-00-13%20%281%29.mp3" type="audio/mp3">
+
+</audio>
+    
+    <center>
+<dialog id="myDialog">
+	<p>알람 종료</p>
+  <button id="closebutton" class="pure-button pure-button-primary">닫기 및 종료</button>
+  <dialog>
+       </center>
+  <div id="hidden"></div>
+
+    <div class="wrapper">
+      <h1>00:00:00 PM</h1>
+      <div class="content">
+        <div class="column">
+          <select>
+            <option value="Hour" selected disabled hidden>Hour</option>
+          </select>
+        </div>
+        <div class="column">
+          <select>
+            <option value="Minute" selected disabled hidden>Minute</option>
+          </select>
+        </div>
+        <div class="column">
+          <select>
+            <option value="AM/PM" selected disabled hidden>AM/PM</option>
+          </select>
+        </div>
+      </div>
+      <button class="apply">Set Alarm</button>
+    </div>
+  </div>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+  #hidden {
+    hight: 60px;
+    width: 1px;
+  }
+div:not(.heading,#header){
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+body{
+  padding: 0 10px;
+  min-height: 100vh;
+  background: #4A98F7;
+}
+.wrapper{
+  width: 440px;
+  padding: 30px 30px 38px;
+  background: #fff;
+  border-radius: 10px;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.wrapper img{
+  max-width: 103px;
+}
+.wrapper h1{
+  font-size: 38px;
+  font-weight: 500;
+  margin: 30px 0;
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.wrapper .content{
+  width: 100%;
+  justify-content: space-between;
+}
+.content.disable{
+  cursor: no-drop;
+}
+.content .column{
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #bfbfbf;
+  width: calc(100% / 3 - 5px);
+}
+.content.disable .column{
+  opacity: 0.6;
+  pointer-events: none;
+}
+.column select{
+  width: 100%;
+  height: 53px;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 19px;
+
+}
+button{
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 17px 0;
+  margin-top: 20px;
+  border-radius: 5px;
+  background: #4A98F7;
+}
+p {
+  font-size: 50px;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}    
+#closebotton {
+  font-size: 50px;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: black;
+  background: white;
+  border: 3px solid #73AD21;
+}     
+
+
+dialog {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	right: auto;
+	padding: 30px;
+	transform: perspective(500px) translate(-50%, -50%);
+	background: linear-gradient(to bottom, #FFF, #F4F4F4) #FFF;
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	transform-origin: 50% 50%;
+	animation: dialog 300ms cubic-bezier(.3,0,.1,1.4) forwards 1;
+	will-change: transform, opacity;
+}
+
+@keyframes dialog {
+	from {
+		transform: perspective(500px) translate(-50%, -25%) rotateX(45deg) scale(0.1);
+		opacity: 0;
+	}
+}
+
+dialog::backdrop {
+	opacity: 0;
+	will-change: opacity;
+	cursor: no-drop;
+
+	/** option 1: "grey" */
+	/*
+  background: rgba(0,0,0,0.3);
+  */
+
+	/** option 2: "checkerboard" */
+  /*
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><rect x="0" y="0" width="1" height="1" fill="rgba(255,255,255,0.2)" /><rect x="1" y="1" width="1" height="1" fill="rgba(255,255,255,0.2)" /></svg>') rgba(0,0,0,0.3);
+	background-size: 2px 2px;
+	*/
+	
+	/** option 3: "zoom" */
+	background: radial-gradient(circle at center, rgba(50,50,50,0.5), rgba(0,0,0,0.5));
+	animation: backdrop 500ms ease forwards 1;
+}
+
+@keyframes backdrop {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+  
+  * {
+
+  margin: 0px;
+
+  padding: 0px;
+
+  box-sizing: border-box;
+
+}
+
+.body-text {
+
+  display: flex;
+
+  font-family: "Montserrat", sans-serif;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-top: 250px;
+
+}
+
+nav {
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  min-height: 8vh;
+
+  background-color: teal;
+
+  font-family: "Montserrat", sans-serif;
+
+}
+
+.heading {
+
+  color: white;
+
+  text-transform: uppercase;
+
+  letter-spacing: 5px;
+
+  font-size: 20px;
+
+}
+
+.nav-links {
+
+  display: flex;
+
+  justify-content: space-around;
+
+  width: 30%;
+
+}
+
+.nav-links li {
+
+  list-style: none;
+
+}
+
+.nav-links a {
+
+  color: white;
+
+  text-decoration: none;
+
+  letter-spacing: 3px;
+
+  font-weight: bold;
+
+  font-size: 14px;
+
+  padding: 14px 16px;
+
+}
+
+.nav-links a:hover:not(.active) {
+
+  background-color: lightseagreen;
+
+}
+
+.nav-links li a.active {
+
+  background-color: #4caf50;
+
+}
+#header {
+	width: 100%;
+}
+	
+      </style>
+        <script>
+const currentTime = document.querySelector("h1"),
+      
+content = document.querySelector(".content"),
+selectMenu = document.querySelectorAll("select"),
+setAlarmBtn = document.querySelector(".apply");
+
+const dialog = document.querySelector("dialog");
+const closeButton = document.querySelector("dialog button");
+let alarmTime, isAlarmSet,
+ringtone = new Audio("https://jmp.sh/ZosQkBHS");
+
+for (let i = 12; i > 0; i--) {
+    i = i < 10 ? `0${i}` : i;
+    let option = `<option value="${i}">${i}</option>`;
+    selectMenu[0].firstElementChild.insertAdjacentHTML("afterend", option);
+}
+
+for (let i = 59; i >= 0; i--) {
+    i = i < 10 ? `0${i}` : i;
+    let option = `<option value="${i}">${i}</option>`;
+    selectMenu[1].firstElementChild.insertAdjacentHTML("afterend", option);
+}
+
+for (let i = 2; i > 0; i--) {
+    let ampm = i == 1 ? "AM" : "PM";
+    let option = `<option value="${ampm}">${ampm}</option>`;
+    selectMenu[2].firstElementChild.insertAdjacentHTML("afterend", option);
+}
+
+setInterval(() => {
+    let date = new Date(),
+    h = date.getHours(),
+    m = date.getMinutes(),
+    s = date.getSeconds(),
+    ampm = "AM";
+    if(h >= 12) {
+        h = h - 12;
+        ampm = "PM";
+    }
+    h = h == 0 ? h = 12 : h;
+    h = h < 10 ? "0" + h : h;
+    m = m < 10 ? "0" + m : m;
+    s = s < 10 ? "0" + s : s;
+    currentTime.innerText = `${h}:${m}:${s} ${ampm}`;
+
+    if (alarmTime === `${h}:${m} ${ampm}`) {
+      play();
+     dialog.showModal();
+      alarmTime = 0;
+
+    }
+});
+
+function setAlarm() {
+    if (isAlarmSet) {
+        alarmTime = "";
+        ringtone.pause();
+        content.classList.remove("disable");
+        setAlarmBtn.innerText = "Set Alarm";
+        return isAlarmSet = false;
+    }
+
+    let time = `${selectMenu[0].value}:${selectMenu[1].value} ${selectMenu[2].value}`;
+    if (time.includes("Hour") || time.includes("Minute") || time.includes("AM/PM")) {
+        return alert("Please, select a valid time to set Alarm!");
+    }
+    alarmTime = time;
+    isAlarmSet = true;
+    content.classList.add("disable");
+    setAlarmBtn.innerText = "Clear Alarm";
+}
+
+setAlarmBtn.addEventListener("click", setAlarm);
+closeButton.addEventListener("click", () => {
+  dialog.close();
+  pause();
+  
+});
+      
+      
+var myMusic= document.getElementById("music");
+
+function play() {
+
+myMusic.play();
+myMusic.loop = true;
+}
+
+ 
+
+function pause() {
+
+myMusic.pause();
+
+}
+          
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) {
+      myMusic.pause();
+      dialog.close();
+    }
+};      
+    
+    </script>
+  </body>
+</html>
+
+  </body>
+
+</html>

@@ -1,1 +1,1 @@
-# tclock
+# tclock.us.kg
