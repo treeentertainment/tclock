@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script> 
+    $(function(){
+      $("#header").load("header.html"); 
+    });
+    </script> 
+  </head>
+  <body>
+        <div id="header"></div>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    
+<audio controls id="music" hidden>
+
+<source src="https://od.lk/s/NjZfNTE3ODk2MTNf/digital-watch-alarm-tomas-herudek-1-00-13%20%281%29.mp3" type="audio/mp3">
+
+</audio>
+    
+    <center>
+<dialog id="myDialog">
+	<p>카운트 다운 종료</p>
+  <button id="closebutton" class="pure-button pure-button-primary">닫기 및 종료</button>
+  </dialog>
+    <center>
+      
+<div class="container">
+<div class="setters">
+  <div class="hour-set">
+    <button data-setter="hour-plus">+</button>
+    <button data-setter="hour-minus">-</button>
+  </div>  
+  
+  <div class="minutes-set">
+    <button data-setter="minutes-plus">+</button>
+    <button data-setter="minutes-minus">-</button>
+  </div>
+  <div class="seconds-set">
+    <button data-setter="seconds-plus">+</button>
+    <button data-setter="seconds-minus">-</button>
+  </div>
+</div>
+<div id="circe" class="circle">
+  <svg width="370" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+     <g transform="translate(110,110)">
+        <circle r="100" class="e-c-base"/>
+        <g transform="rotate(-90)">
+           <circle r="100" class="e-c-progress"/>
+           <g id="e-pointer">
+              <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
+             
+           </g>
+        </g>
+     </g>
+  </svg>
+</div>
+    <div class="controlls">
+  <div id="timer"class="display-remain-time">00:00:00</div>
+  <button class="play" id="pause"></button>
+</div>
+    </div>
+          </center>
+
+
+      </body>
+  </body>
+<script>
+	const dialog = document.querySelector("dialog");
+const closeButton = document.querySelector("dialog button");
+let progressBar = document.querySelector('.e-c-progress');
+let indicator = document.getElementById('e-indicator');
+let pointer = document.getElementById('e-pointer');
+let length = Math.PI * 2 * 100;
+progressBar.style.strokeDasharray = length;
+function update(value, timePercent) {
+  var offset = - length - length * value / (timePercent);
+  progressBar.style.strokeDashoffset = offset; 
+  pointer.style.transform = `rotate(${360 * value / (timePercent)}deg)`; 
+};
+const displayOutput = document.querySelector('.display-remain-time')
+const pauseBtn = document.getElementById('pause');
+const setting = document.getElementById('summit');
+const setterBtns = document.querySelectorAll('button[data-setter]');
+let intervalTimer;
+let timeLeft;
+var wholeTime = 0; 
+let isPaused = false;
+let isStarted = false;
+
+update(wholeTime,wholeTime);
+displayTimeLeft(wholeTime);
+function changeWholeTime(seconds){
+  if ((wholeTime + seconds) > 0){
+    wholeTime += seconds;
+    update(wholeTime,wholeTime);
+  }
+}
+for (var i = 0; i < setterBtns.length; i++) {
+    setterBtns[i].addEventListener("click", function(event) {
+        var param = this.dataset.setter;
+        switch (param) {
+            case 'hour-plus':
+                changeWholeTime(3600);
+                break;
+            case 'hour-minus':
+                changeWholeTime(-3600);
+                break;            
+            case 'minutes-plus':
+                changeWholeTime(1 * 60);
+                break;
+            case 'minutes-minus':
+                changeWholeTime(-1 * 60);
+                break;
+            case 'seconds-plus':
+                changeWholeTime(1);
+                break;
+            case 'seconds-minus':
+                changeWholeTime(-1);
+                break;
+        }
+      displayTimeLeft(wholeTime);
+    });
+}
+function timer (seconds){ 
+  let remainTime = Date.now() + (seconds * 1000);
+  displayTimeLeft(seconds);
+  
+  intervalTimer = setInterval(function(){
+    timeLeft = Math.round((remainTime - Date.now()) / 1000);
+    if(timeLeft < 0){
+      clearInterval(intervalTimer);
+      isStarted = false;
+      setterBtns.forEach(function(btn){
+        btn.disabled = false;
+        btn.style.opacity = 1;
+        myMusic.play();
+        dialog.showModal();
+      });
+      displayTimeLeft(wholeTime);
+      pauseBtn.classList.remove('pause');
+      pauseBtn.classList.add('play');
+      return ;
+    }
+    displayTimeLeft(timeLeft);
+  }, 1000);
+}
+function pauseTimer(event){
+  if(isStarted === false){
+    timer(wholeTime);
+    isStarted = true;
+    this.classList.remove('play');
+    this.classList.add('pause');
+    
+    setterBtns.forEach(function(btn){
+      btn.disabled = true;
+      btn.style.opacity = 0.5;
+    });
+  }else if(isPaused){
+    this.classList.remove('play');
+    this.classList.add('pause');
+    timer(timeLeft);
+    isPaused = isPaused ? false : true
+  }else{
+    this.classList.remove('pause');
+    this.classList.add('play');
+    clearInterval(intervalTimer);
+    isPaused = isPaused ? false : true ;
+  }
+}
+function displayTimeLeft (timeLeft){ 
+  let hour = Math.floor(timeLeft / 3600);
+  let minutes = Math.floor(timeLeft % 3600 / 60);
+  let seconds = timeLeft % 60;
+  let displayString = `${hour < 10 ? '0' : ''}${hour}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  displayOutput.textContent = displayString;
+  update(timeLeft, wholeTime);
+}
+
+pauseBtn.addEventListener('click',pauseTimer); 
+closeButton.addEventListener("click", () => {
+  dialog.close();
+  pause();
+  
+});      
+      
+var myMusic= document.getElementById("music");
+
+function play() {
+
+myMusic.play();
+myMusic.loop = true;
+}
+      
+      
+
+ 
+
+function pause() {
+
+myMusic.pause();
+
+}
+          
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) {
+        alert('Esc key pressed.');
+      myMusic.pause();
+      dialog.close();
+    }
+};    
+function close() {
+   myMusic.pause();
+   dialog.close();
+}    
+
+</script>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Roboto:100,300');
+
+button[data-setter] {
+    outline: none;
+    background: transparent;
+    border: none;
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 18px;
+    width: 25px;
+    height: 30px;
+    color: #F7958E;
+    cursor: pointer;
+}
+button[data-setter]:hover {
+    opacity: 0.5;
+}
+.container {
+    position: relative;
+    top: 30px;
+    width: 300px;
+    right:35px;
+ 
+}
+.setters {
+    position: absolute;
+    left: 80px;
+    top: 75px;
+  
+}
+.minutes-set {
+  float: left;
+  margin-left: 3px;
+}
+.seconds-set { 
+  float: right; 
+  margin-left: 28px;
+ }
+.hour-set {
+  float: left;
+  margin-right: 20px;
+}
+.controlls {
+    position: absolute;
+    left: 70px;
+    top: 105px;
+    text-aline: center;
+}
+.display-remain-time {
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-size: 65px;
+    color: #F7958E;
+
+}
+#pause {
+    outline: none;
+    background: transparent;
+    border: none;
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+.play::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 22px solid #F7958E;
+}
+.pause::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    width: 15px;
+    height: 30px;
+    background-color: transparent;
+    border-radius: 1px;
+    border: 5px solid #F7958E;
+    border-top: none;
+    border-bottom: none;
+}
+#pause:hover {
+    opacity: 0.8;
+}
+.e-c-base {
+    fill: none;
+    stroke: #B6B6B6;
+    stroke-width: 4px;
+}
+.e-c-progress {
+    fill: none;
+    stroke: #F7958E;
+    stroke-width: 4px;
+    transition: stroke-dashoffset 0.7s;
+}
+.e-c-pointer {
+    fill: #FFF;
+    stroke: #F7958E;
+    stroke-width: 2px;
+}
+#e-pointer {
+    transition: transform 0.7s;
+}
+
+p {
+  font-size: 50px;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}  
+      
+#closebutton {
+  font-size: 50px;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: black;
+  background: white;
+  border: 3px solid #73AD21;
+        
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 17px 0;
+  margin-top: 20px;
+  border-radius: 5px;
+  background: #4A98F7;
+}     
+
+
+
+dialog {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	right: auto;
+	padding: 30px;
+	transform: perspective(500px) translate(-50%, -50%);
+	background: linear-gradient(to bottom, #FFF, #F4F4F4) #FFF;
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	transform-origin: 50% 50%;
+	animation: dialog 300ms cubic-bezier(.3,0,.1,1.4) forwards 1;
+	will-change: transform, opacity;
+}
+
+@keyframes dialog {
+	from {
+		transform: perspective(500px) translate(-50%, -25%) rotateX(45deg) scale(0.1);
+		opacity: 0;
+	}
+}
+
+dialog::backdrop {
+	opacity: 0;
+	will-change: opacity;
+	cursor: no-drop;
+
+	/** option 1: "grey" */
+	/*
+  background: rgba(0,0,0,0.3);
+  */
+
+	/** option 2: "checkerboard" */
+  /*
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><rect x="0" y="0" width="1" height="1" fill="rgba(255,255,255,0.2)" /><rect x="1" y="1" width="1" height="1" fill="rgba(255,255,255,0.2)" /></svg>') rgba(0,0,0,0.3);
+	background-size: 2px 2px;
+	*/
+	
+	/** option 3: "zoom" */
+	background: radial-gradient(circle at center, rgba(50,50,50,0.5), rgba(0,0,0,0.5));
+	animation: backdrop 500ms ease forwards 1;
+}
+
+@keyframes backdrop {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+
+
+* {
+
+  margin: 0px;
+
+  padding: 0px;
+
+  box-sizing: border-box;
+
+}
+
+.body-text {
+
+  display: flex;
+
+  font-family: "Montserrat", sans-serif;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-top: 250px;
+
+}
+
+nav {
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  min-height: 8vh;
+
+  background-color: teal;
+
+  font-family: "Montserrat", sans-serif;
+
+}
+
+.heading {
+
+  color: white;
+
+  text-transform: uppercase;
+
+  letter-spacing: 5px;
+
+  font-size: 20px;
+
+}
+
+.nav-links {
+
+  display: flex;
+
+  justify-content: space-around;
+
+  width: 30%;
+
+}
+
+.nav-links li {
+
+  list-style: none;
+
+}
+
+.nav-links a {
+
+  color: white;
+
+  text-decoration: none;
+
+  letter-spacing: 3px;
+
+  font-weight: bold;
+
+  font-size: 14px;
+
+  padding: 14px 16px;
+
+}
+
+.nav-links a:hover:not(.active) {
+
+  background-color: lightseagreen;
+
+}
+
+.nav-links li a.active {
+
+  background-color: #4caf50;
+
+}
+	</style>
+</script>
+  </body>
+
+</html>

@@ -1,0 +1,3 @@
+- https://developer.mozilla.org/ko/docs/Web/API/Element/insertAdjacentHTML
+- https://codingeverybody.kr/html-input-type_range
+- https://stackoverflow.com/a/8211324

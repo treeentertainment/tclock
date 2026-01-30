@@ -1,0 +1,163 @@
+<!doctype html>
+<html class="no-js" lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TCLOCK</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Compressed CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- Compressed JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="timer.css" />
+  </head>
+  <body>
+    <div id="stage">
+      <div class="container" id="container">
+        <br />
+        <div id="set">
+          <div class="grid-x grid-padding-x align-center">
+            <div class="cell small-12 medium-10 large-8">
+              <label class="show-for-sr">시간 / 분 / 초</label>
+              <div class="grid-x align-middle align-center hms-row">
+                <div class="cell shrink hms-field">
+                  <div class="hms-inline">
+                    <button
+                      class="button secondary"
+                      type="button"
+                      onclick="incrementField('hours', -1)"
+                    >
+                      -
+                    </button>
+                    <div class="input-group">
+                      <span class="input-group-label">H</span>
+                      <input
+                        id="hours"
+                        class="input-group-field"
+                        type="number"
+                        min="0"
+                        value="0"
+                      />
+                    </div>
+                    <button
+                      class="button secondary"
+                      type="button"
+                      onclick="incrementField('hours', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="cell shrink hms-field">
+                  <div class="hms-inline">
+                    <button
+                      class="button secondary"
+                      type="button"
+                      onclick="incrementField('minutes', -1)"
+                    >
+                      -
+                    </button>
+                    <div class="input-group">
+                      <span class="input-group-label">M</span>
+                      <input
+                        id="minutes"
+                        class="input-group-field"
+                        type="number"
+                        min="0"
+                        max="59"
+                        value="0"
+                      />
+                    </div>
+                    <button
+                      class="button secondary"
+                      type="button"
+                      onclick="incrementField('minutes', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="cell shrink hms-field">
+                  <div class="hms-inline">
+                    <button
+                      class="button secondary"
+                      type="button"
+                      onclick="incrementField('seconds', -1)"
+                    >
+                      -
+                    </button>
+                    <div class="input-group">
+                      <span class="input-group-label">S</span>
+                      <input
+                        id="seconds"
+                        class="input-group-field"
+                        type="number"
+                        min="0"
+                        max="59"
+                        value="10"
+                      />
+                    </div>
+                    <button
+                      class="button secondary"
+                      type="button"
+                      onclick="incrementField('seconds', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-x align-center">
+              <div class="cell shrink">
+                <button
+                  id="startBtn"
+                  class="button success"
+                  type="button"
+                  onclick="startFromInput()"
+                >
+                  Start
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="countdown" style="display: none">
+        <p id="demo"></p>
+        <div class="grid-x align-center">
+          <a
+            href="#"
+            class="button alert"
+            onclick="stopAndReturn(); return false;"
+            >종료</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="zoom.js"></script>
+    <script src="nav.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+    <script src="fullscreen.button.js"></script>
+    <script src="timer.js"></script>
+  </body>
+</html>
