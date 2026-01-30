@@ -1,4 +1,5 @@
-# TCLOCK
+# ✅TCLOCK✅
+
 ### Simple Clock Website (With No Ads)
 
 ![license](https://img.shields.io/github/license/treeentertainment/tclock?style=for-the-badge&logo=opensourceinitiative&logoColor=white)
@@ -19,10 +20,11 @@
 
 > ## 버전
 
-[❌V1](./V1)
 
-[✅V2](./V2)
-
+| FILE | URL |
+|---|----|
+| [✅V1](./V1) | [https://tclock.pages.dev](https://tclock.pages.dev) |
+| [❤️V2](./V2) | [https://treeentertainment.github.io/tclock](https://treeentertainment.github.io/tclock) |
 
 > ## 저작권
 
