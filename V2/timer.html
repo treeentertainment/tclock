@@ -25,130 +25,101 @@
     <link rel="stylesheet" href="timer.css" />
   </head>
   <body>
+    <br />
     <div id="stage">
       <div class="container" id="container">
+        <div id="timer"></div>
         <br />
-        <div id="set">
-          <div class="grid-x grid-padding-x align-center">
-            <div class="cell small-12 medium-10 large-8">
-              <label class="show-for-sr">시간 / 분 / 초</label>
-              <div class="grid-x align-middle align-center hms-row">
-                <div class="cell shrink hms-field">
-                  <div class="hms-inline">
-                    <button
-                      class="button secondary"
-                      type="button"
-                      onclick="incrementField('hours', -1)"
-                    >
-                      -
-                    </button>
-                    <div class="input-group">
-                      <span class="input-group-label">H</span>
-                      <input
-                        id="hours"
-                        class="input-group-field"
-                        type="number"
-                        min="0"
-                        value="0"
-                      />
-                    </div>
-                    <button
-                      class="button secondary"
-                      type="button"
-                      onclick="incrementField('hours', 1)"
-                    >
-                      +
-                    </button>
-                  </div>
+        <div id="controls">
+          <details>
+            <summary>타이머 설정</summary>
+            <div class="grid-x grid-margin-x align-middle">
+              <div class="cell auto">
+                <div class="input-group">
+                  <input
+                    type="button"
+                    class="button alert adjust-time"
+                    data-unit="hour"
+                    data-action="minus"
+                    value="-"
+                  />
+                  <input
+                    id="hours-input"
+                    class="input-group-field"
+                    type="number"
+                    placeholder="시"
+                    min="0"
+                    value="0"
+                  />
+                  <input
+                    type="button"
+                    class="button success adjust-time"
+                    data-unit="hour"
+                    data-action="plus"
+                    value="+"
+                  />
                 </div>
+              </div>
 
-                <div class="cell shrink hms-field">
-                  <div class="hms-inline">
-                    <button
-                      class="button secondary"
-                      type="button"
-                      onclick="incrementField('minutes', -1)"
-                    >
-                      -
-                    </button>
-                    <div class="input-group">
-                      <span class="input-group-label">M</span>
-                      <input
-                        id="minutes"
-                        class="input-group-field"
-                        type="number"
-                        min="0"
-                        max="59"
-                        value="0"
-                      />
-                    </div>
-                    <button
-                      class="button secondary"
-                      type="button"
-                      onclick="incrementField('minutes', 1)"
-                    >
-                      +
-                    </button>
-                  </div>
+              <div class="cell auto">
+                <div class="input-group">
+                  <input
+                    type="button"
+                    class="button alert adjust-time"
+                    data-unit="minute"
+                    data-action="minus"
+                    value="-"
+                  />
+                  <input
+                    id="minutes-input"
+                    class="input-group-field"
+                    type="number"
+                    placeholder="분"
+                    min="0"
+                    value="0"
+                  />
+                  <input
+                    type="button"
+                    class="button success adjust-time"
+                    data-unit="minute"
+                    data-action="plus"
+                    value="+"
+                  />
                 </div>
+              </div>
 
-                <div class="cell shrink hms-field">
-                  <div class="hms-inline">
-                    <button
-                      class="button secondary"
-                      type="button"
-                      onclick="incrementField('seconds', -1)"
-                    >
-                      -
-                    </button>
-                    <div class="input-group">
-                      <span class="input-group-label">S</span>
-                      <input
-                        id="seconds"
-                        class="input-group-field"
-                        type="number"
-                        min="0"
-                        max="59"
-                        value="10"
-                      />
-                    </div>
-                    <button
-                      class="button secondary"
-                      type="button"
-                      onclick="incrementField('seconds', 1)"
-                    >
-                      +
-                    </button>
-                  </div>
+              <div class="cell auto">
+                <div class="input-group">
+                  <input
+                    type="button"
+                    class="button alert adjust-time"
+                    data-unit="second"
+                    data-action="minus"
+                    value="-"
+                  />
+                  <input
+                    id="seconds-input"
+                    class="input-group-field"
+                    type="number"
+                    placeholder="초"
+                    min="0"
+                    value="0"
+                  />
+                  <input
+                    type="button"
+                    class="button success adjust-time"
+                    data-unit="second"
+                    data-action="plus"
+                    value="+"
+                  />
                 </div>
               </div>
             </div>
 
-            <div class="grid-x align-center">
-              <div class="cell shrink">
-                <button
-                  id="startBtn"
-                  class="button success"
-                  type="button"
-                  onclick="startFromInput()"
-                >
-                  Start
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="countdown" style="display: none">
-        <p id="demo"></p>
-        <div class="grid-x align-center">
-          <a
-            href="#"
-            class="button alert"
-            onclick="stopAndReturn(); return false;"
-            >종료</a
-          >
+            <button id="start-timer" class="button">Start</button>
+            <button id="pause-timer" class="button">Pause</button>
+            <button id="reset-timer" class="button">Reset</button>
+          </details>
         </div>
       </div>
     </div>

@@ -1,46 +1,76 @@
-/* Timer display */
-#demo {
-  font-family: "Orbitron", sans-serif;
-  font-size: 2rem;
-  text-align: center;
-  margin: 1rem 0;
-  color: #222;
+body {
+  font-family: sans-serif;
+  display: grid;
+  place-items: center;
+  background-color: white;
 }
 
-.hms-row {
+#stage {
+  background-color: white;
+}
+
+#timer {
   display: flex;
-  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-timer {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+#controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.base-timer__svg {
+  transform: scaleX(-1);
+}
+
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.green {
+  color: rgb(65, 184, 131);
+}
+
+.base-timer__path-remaining.orange {
+  color: orange;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+}
+
+.base-timer__label {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 0;
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-}
-.hms-field {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-}
-.hms-field .input-group {
-  min-width: 90px;
-}
-.hms-inline {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-.hms-inline > button {
-  padding: 0.35rem 0.6rem;
-}
-
-/* keep small screens readable */
-@media (min-width: 480px) {
-  #demo {
-    font-size: 2.4rem;
-  }
-  .hms-row {
-    gap: 1rem;
-  }
-  .hms-field .input-group {
-    min-width: 110px;
-  }
+  font-size: 48px;
 }
