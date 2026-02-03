@@ -3,6 +3,7 @@ const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
 let TIME_LIMIT = 0;
 let isRunning = false;
+let ringtone = new Audio("./ringtones/electronic.wav");
 
 const COLOR_CODES = {
   info: {
@@ -51,6 +52,8 @@ function onTimesUp() {
   clearInterval(timerInterval);
   timerInterval = null;
   isRunning = false;
+  ringtone.loop = true;
+  ringtone.play();
 }
 
 function startTimer() {
@@ -155,9 +158,13 @@ document.getElementById("start-timer").addEventListener("click", () => {
 });
 
 function resetToZero() {
+  ringtone.pause();
+  ringtone.currentTime = 0;
   clearInterval(timerInterval);
   timerInterval = null;
   isRunning = false;
+  ringtone.pause();
+  ringtone.currentTime = 0;
 
   TIME_LIMIT = 0;
   timePassed = 0;

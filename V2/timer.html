@@ -4,125 +4,169 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TCLOCK</title>
+    <title>Tclock</title>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
       crossorigin="anonymous"
     ></script>
-    <!-- Compressed CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css"
       crossorigin="anonymous"
     />
-
-    <!-- Compressed JavaScript -->
     <script
       src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"
       crossorigin="anonymous"
     ></script>
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="timer.css" />
   </head>
+
   <body>
-    <br />
     <div id="stage">
       <div class="container" id="container">
         <div id="timer"></div>
-        <br />
+
         <div id="controls">
-          <details>
-            <summary>타이머 설정</summary>
+          <details id="timer-controls" open>
+            <summary>
+              <span class="material-symbols-outlined">menu</span>
+              타이머 제어
+            </summary>
+            <button id="start-timer" class="button">
+              <span class="material-symbols-outlined">play_circle</span>
+            </button>
+            <button id="pause-timer" class="button">
+              <span class="material-symbols-outlined">pause_circle</span>
+            </button>
+            <button id="reset-timer" class="button">
+              <span class="material-symbols-outlined">restart_alt</span>
+            </button>
+          </details>
+
+          <details id="timer-settings">
+            <summary>
+              <span class="material-symbols-outlined"
+                >settings_applications</span
+              >타이머 설정
+            </summary>
+
             <div class="grid-x grid-margin-x align-middle">
               <div class="cell auto">
+                <label>시</label>
                 <div class="input-group">
                   <input
                     type="button"
                     class="button alert adjust-time"
+                    value="-"
                     data-unit="hour"
                     data-action="minus"
-                    value="-"
                   />
                   <input
                     id="hours-input"
                     class="input-group-field"
                     type="number"
-                    placeholder="시"
                     min="0"
                     value="0"
                   />
                   <input
                     type="button"
                     class="button success adjust-time"
+                    value="+"
                     data-unit="hour"
                     data-action="plus"
-                    value="+"
                   />
                 </div>
               </div>
 
               <div class="cell auto">
+                <label>분</label>
                 <div class="input-group">
                   <input
                     type="button"
                     class="button alert adjust-time"
+                    value="-"
                     data-unit="minute"
                     data-action="minus"
-                    value="-"
                   />
                   <input
                     id="minutes-input"
                     class="input-group-field"
                     type="number"
-                    placeholder="분"
                     min="0"
                     value="0"
                   />
                   <input
                     type="button"
                     class="button success adjust-time"
+                    value="+"
                     data-unit="minute"
                     data-action="plus"
-                    value="+"
                   />
                 </div>
               </div>
 
               <div class="cell auto">
+                <label>초</label>
                 <div class="input-group">
                   <input
                     type="button"
                     class="button alert adjust-time"
+                    value="-"
                     data-unit="second"
                     data-action="minus"
-                    value="-"
                   />
                   <input
                     id="seconds-input"
                     class="input-group-field"
                     type="number"
-                    placeholder="초"
                     min="0"
                     value="0"
                   />
                   <input
                     type="button"
                     class="button success adjust-time"
+                    value="+"
                     data-unit="second"
                     data-action="plus"
-                    value="+"
                   />
                 </div>
               </div>
             </div>
-
-            <button id="start-timer" class="button">Start</button>
-            <button id="pause-timer" class="button">Pause</button>
-            <button id="reset-timer" class="button">Reset</button>
           </details>
         </div>
       </div>
     </div>
+    <footer class="copyright">
+      <div class="meta">
+        <img
+          src="https://gongu.copyright.or.kr/static/gongu/img/common/img_license21.png"
+          alt="CC BY"
+          class="cc"
+        />
+
+        <img
+          id="wrtImg"
+          src="https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=13254501&amp;filePath=L2Rpc2sxL25ld2RhdGEvMjAyMC8yMS9DTFMxMDAwMi8xMzI1NDUwMV9XUlRfMjAyMDAyMDhfMQ==&amp;thumbAt=Y&amp;thumbSe=b_tbumb&amp;wrtTy=10002"
+          alt="전자시계 알람"
+          class="thumb"
+        />
+
+        <div class="text">
+          <div class="title">전자시계 알람</div>
+          <div class="details">
+            by <a href="http://uci.or.kr/G905-13254501">김용배</a> —
+            <a href="https://gongu.copyright.or.kr/gongu/main/main.do"
+              >공유마당 저작권 위원회</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <script src="zoom.js"></script>
     <script src="nav.js"></script>
     <script>

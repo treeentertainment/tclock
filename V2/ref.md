@@ -2,3 +2,7 @@
 - https://codingeverybody.kr/html-input-type_range
 - https://stackoverflow.com/a/8211324
 - https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/
+- https://developers.google.com/fonts/docs/material_symbols
+- https://get.foundation/sites/docs
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details#open
+- https://youtu.be/nOdQzH7Kp_0

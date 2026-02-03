@@ -27,13 +27,32 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="stopwatch.css" />
   </head>
   <body>
     <div id="stage">
       <div class="container" id="container">
-        <p id="time" class="time text-center h1"></p>
-        <p id="date" class="date text-center h4"></p>
+        <br />
+        <div class="circle">
+          <span class="time" id="display">00:00:00:00</span>
+
+          <div class="controls">
+            <button class="buttonPlay">
+              <span id="playButton" class="material-symbols-outlined">
+                play_circle
+              </span>
+              <span id="pauseButton" class="material-symbols-outlined">
+                pause_circle
+              </span>
+            </button>
+
+            <button class="buttonReset">
+              <span id="resetButton" class="material-symbols-outlined">
+                restart_alt
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <script src="zoom.js"></script>
@@ -42,6 +61,6 @@
       $(document).foundation();
     </script>
     <script src="fullscreen.button.js"></script>
-    <script src="index.js"></script>
+    <script src="stopwatch.js"></script>
   </body>
 </html>

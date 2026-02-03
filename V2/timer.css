@@ -1,12 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+
+:root {
+  --zoom-scale: 1;
+
+  --ui-height-raw: calc(42 / var(--zoom-scale));
+  --ui-height: calc(round(var(--ui-height-raw)) * 1px);
+
+  --ui-font: calc(1rem / var(--zoom-scale));
+}
+
 body {
-  font-family: sans-serif;
-  display: grid;
-  place-items: center;
-  background-color: white;
+  margin: 0;
 }
 
 #stage {
-  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: white;
 }
 
 #timer {
@@ -16,9 +27,9 @@ body {
 }
 
 .base-timer {
-  position: relative;
   width: 300px;
   height: 300px;
+  position: relative;
 }
 
 #controls {
@@ -26,6 +37,84 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  align-items: stretch;
+  width: calc(100% / var(--zoom-scale));
+  max-width: calc(220px / var(--zoom-scale));
+  height: var(--ui-height);
+}
+
+.input-group-field,
+.input-group .button {
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  line-height: normal;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-group-field {
+  display: flex;
+  align-items: center;
+  font-size: var(--ui-font);
+  padding: 0 calc(0.5rem / var(--zoom-scale));
+}
+
+.input-group .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--ui-font);
+  padding: 0 calc(0.75rem / var(--zoom-scale));
+}
+
+label {
+  font-size: calc(0.9rem / var(--zoom-scale));
+  margin-bottom: calc(4px / var(--zoom-scale));
+}
+
+summary {
+  margin: 0;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  font-size: 1em;
+  color: inherit;
+}
+summary::marker {
+  font-size: 1em;
+  color: inherit;
+}
+
+#timer-settings > summary {
+  position: relative;
+}
+
+#timer-settings {
+  order: 99;
+  flex: 0 0 100%;
+  width: 100%;
+  margin-top: 6px;
 }
 
 .base-timer__svg {
@@ -72,5 +161,79 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
+  font-size: 40px;
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid-x {
+  justify-content: center;
+}
+
+.copyright {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  color: #444;
+
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
+}
+
+.copyright .meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.copyright img.cc {
+  height: 20px;
+  vertical-align: middle;
+}
+.copyright img.thumb {
+  height: 36px;
+  border-radius: 4px;
+}
+.copyright .text .title {
+  font-weight: 600;
+  line-height: 1;
+}
+.copyright .details {
+  color: #666;
+  font-size: 0.9rem;
+}
+.copyright a {
+  color: #0a58ca;
+  text-decoration: none;
+}
+.copyright a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .copyright {
+    justify-content: center;
+  }
+  .copyright img.thumb {
+    height: 28px;
+  }
+}
+
+.zoom-controller {
+  bottom: 70px;
 }

@@ -1,17 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   if (!(document.fullscreenEnabled || document.webkitFullscreenEnabled)) return;
-
   const style = document.createElement("style");
   style.textContent = `
+    :root { --zoom-scale: 1; }
+
     .zoom-controller {
       position: fixed;
-      bottom: 20px;
+      bottom: 70px;
       left: 50%;
       transform: translateX(-50%);
       width: 300px;
       z-index: 9999;
     }
 
+    /* allow scrolling when content is scaled */
     body {
       overflow: hidden;
     }
@@ -23,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.head.appendChild(style);
 
-  // insert controller as a sibling after #container so it isn't affected by #container's transform
   document.getElementById("container").insertAdjacentHTML(
     "afterend",
     `
@@ -46,9 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyZoom(value) {
     const scale = value / 100;
     $container.css("transform", `scale(${scale})`);
+    document.documentElement.style.setProperty("--zoom-scale", scale);
   }
 
-  const initial = $range.val() || 300;
+  const initial = parseInt($range.val(), 10) || 100;
   applyZoom(initial);
 
   $range.on("input", function () {

@@ -103,10 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isFullscreen) {
       if (document.exitFullscreen) document.exitFullscreen();
-      else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
+      else if (document.webkitCancelFullScreen)
+        document.webkitCancelFullScreen();
     } else {
       if (stageEl.requestFullscreen) stageEl.requestFullscreen();
-      else if (stageEl.webkitRequestFullScreen) stageEl.webkitRequestFullScreen();
+      else if (stageEl.webkitRequestFullScreen)
+        stageEl.webkitRequestFullScreen();
     }
   });
 

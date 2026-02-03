@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js" lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tclock</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="stage">
+      <br />
+      <div class="grid-container" id="container">
+        <div class="grid-x grid-padding-x align-center">
+          <div class="cell small-12 text-center">
+            <p id="time" class="time h1">00:00:00 오전</p>
+            <p id="date" class="date h4">0000년 00월 00일</p>
+          </div>
+
+          <div class="cell small-10 medium-8 large-6">
+            <form>
+              <div class="grid-x grid-margin-x align-middle content">
+                <div class="cell small-4">
+                  <label class="show-for-sr">시</label>
+                  <select id="hour-select" aria-label="시">
+                    <option value="" selected disabled hidden>시</option>
+                  </select>
+                </div>
+
+                <div class="cell small-4">
+                  <label class="show-for-sr">분</label>
+                  <select id="minute-select" aria-label="분">
+                    <option value="" selected disabled hidden>분</option>
+                  </select>
+                </div>
+
+                <div class="cell small-4">
+                  <label class="show-for-sr">오전/오후</label>
+                  <select id="ampm-select" aria-label="오전/오후">
+                    <option value="" selected disabled hidden>오전/오후</option>
+                    <option value="오전">오전</option>
+                    <option value="오후">오후</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid-x grid-margin-x align-center">
+                <div class="cell shrink">
+                  <button
+                    type="button"
+                    class="button primary"
+                    id="set-alarm"
+                    disabled
+                  >
+                    알림 설정
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="reveal"
+          id="alarmFinished"
+          data-close-on-click="false"
+          data-reveal
+        >
+          <h1 id="alarmMessage"></h1>
+          <button class="button alert" id="stopAlarm">알람 끄기</button>
+        </div>
+      </div>
+    </div>
+    <footer class="copyright">
+      <div class="meta">
+        <img
+          src="https://gongu.copyright.or.kr/static/gongu/img/common/img_license21.png"
+          alt="CC BY"
+          class="cc"
+        />
+
+        <img
+          id="wrtImg"
+          src="https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=13254501&amp;filePath=L2Rpc2sxL25ld2RhdGEvMjAyMC8yMS9DTFMxMDAwMi8xMzI1NDUwMV9XUlRfMjAyMDAyMDhfMQ==&amp;thumbAt=Y&amp;thumbSe=b_tbumb&amp;wrtTy=10002"
+          alt="전자시계 알람"
+          class="thumb"
+        />
+
+        <div class="text">
+          <div class="title">전자시계 알람</div>
+          <div class="details">
+            by <a href="http://uci.or.kr/G905-13254501">김용배</a> —
+            <a href="https://gongu.copyright.or.kr/gongu/main/main.do"
+              >공유마당 저작권 위원회</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="zoom.js"></script>
+    <script src="nav.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+    <script src="fullscreen.button.js"></script>
+    <script src="alarm.js"></script>
+  </body>
+</html>

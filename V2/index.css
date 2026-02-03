@@ -17,3 +17,63 @@
 #stage {
   background-color: white;
 }
+
+.copyright {
+  position: fixed; /* 핵심 */
+  left: 50%;
+  bottom: 12px; /* 항상 하단 */
+  transform: translateX(-50%);
+  z-index: 1000; /* zoom-controller(9999)보단 낮게 */
+
+  display: flex;
+  justify-content: center;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  color: #444;
+
+  background: rgba(255, 255, 255, 0.85); /* 확대 시 가독성 유지 */
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
+}
+
+.copyright .meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.copyright img.cc {
+  height: 20px;
+  vertical-align: middle;
+}
+.copyright img.thumb {
+  height: 36px;
+  border-radius: 4px;
+}
+.copyright .text .title {
+  font-weight: 600;
+  line-height: 1;
+}
+.copyright .details {
+  color: #666;
+  font-size: 0.9rem;
+}
+.copyright a {
+  color: #0a58ca;
+  text-decoration: none;
+}
+.copyright a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .copyright {
+    justify-content: center;
+  }
+  .copyright img.thumb {
+    height: 28px;
+  }
+}
+
+.zoom-controller {
+  bottom: 70px; /* 푸터 위로 이동 */
+}
