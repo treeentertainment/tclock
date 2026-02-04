@@ -2,8 +2,6 @@
 
 ### Simple Clock Website (With No Ads)
 
-![license](https://img.shields.io/github/license/treeentertainment/tclock?style=for-the-badge&logo=opensourceinitiative&logoColor=white)
-
 > ## 방문자 수
 
 [![hits](https://hits.sh/github.com/treeentertainment/tclock.svg?style=for-the-badge&label=%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98)](https://hits.sh/github.com/treeentertainment/tclock/)
@@ -29,3 +27,7 @@
 > ## 저작권
 
 [![CopyRight](https://img.shields.io/badge/tree%20entertainment-green?style=for-the-badge&logo=github&label=github&link=https%3A%2F%2Fgithub.com%2Ftreeentertainment)](https://github.com/treeentertainment)
+
+> ## 라이선스
+
+[![AGPL-3.0](https://www.gnu.org/graphics/agplv3-with-text-162x68.png)](https://www.gnu.org/licenses/agpl-3.0.html)
