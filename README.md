@@ -24,7 +24,7 @@
 | FILE | URL |
 |---|----|
 | [✅V1](./V1) | [https://tclock.pages.dev](https://tclock.pages.dev) |
-| [❤️V2](./V2) | [https://treeentertainment.github.io/tclock](https://treeentertainment.github.io/tclock) |
+| [❤️V2](./V2) | [https://tclock.js.org](https://tclock.js.org) |
 
 > ## 저작권
 

@@ -19,11 +19,11 @@
 }
 
 .copyright {
-  position: fixed; /* 핵심 */
+  position: fixed;
   left: 50%;
-  bottom: 12px; /* 항상 하단 */
+  bottom: 12px;
   transform: translateX(-50%);
-  z-index: 1000; /* zoom-controller(9999)보단 낮게 */
+  z-index: 1000;
 
   display: flex;
   justify-content: center;
@@ -31,7 +31,7 @@
   font-size: 0.82rem;
   color: #444;
 
-  background: rgba(255, 255, 255, 0.85); /* 확대 시 가독성 유지 */
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(2px);
   border-radius: 8px;
 }
@@ -75,5 +75,5 @@
 }
 
 .zoom-controller {
-  bottom: 70px; /* 푸터 위로 이동 */
+  bottom: 70px;
 }

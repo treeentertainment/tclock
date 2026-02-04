@@ -14,11 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* allow scrolling when content is scaled */
-    body {
+    body, html {
       overflow: hidden;
     }
 
     #container {
+      height: 100vh;
       transform-origin: top center;
       transition: transform 0.2s ease;
     }
