@@ -16,19 +16,15 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  checkout:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
   deploy-github-pages:
-    needs: checkout
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
@@ -42,12 +38,14 @@ jobs:
         uses: actions/deploy-pages@v5
 
   deploy-cloudflare-pages:
-    needs: checkout
     environment:
       name: cloudflare-pages
       url: ${{ steps.cf_deployment.outputs.deployment-url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        
       - name: Deploy to Cloudflare Pages
         id: cf_deployment
         uses: cloudflare/wrangler-action@v4
