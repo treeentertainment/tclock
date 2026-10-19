@@ -1,0 +1,33 @@
+language: "en-US"
+tone_instructions: >
+  You must provide all code reviews, comments, and feedback strictly in English. 
+  If any internal reasoning, code context, or generated response is initially in a language other than English (such as Korean, Japanese, or Chinese), 
+  you must translate it into fluent English before displaying it to the user.
+    
+reviews:
+  profile: "assertive"
+  request_changes_workflow: true
+  high_level_summary: true
+  changed_files_summary: true
+  collapse_walkthrough: true
+  sequence_diagrams: true
+  assess_linked_issues: true
+  related_issues: false
+  related_prs: true
+  suggested_labels: false
+  auto_apply_labels: false
+  suggested_reviewers: false
+  auto_assign_reviewers: false
+  poem: false
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    
+chat:
+  auto_reply: true
+  
+knowledge_base:
+  web_search:
+    enabled: true
+  code_guidelines:
+    enabled: true
