@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+
+:root {
+  --zoom-scale: 1;
+  --ui-height-raw: calc(42 / var(--zoom-scale));
+  --ui-height: calc(round(var(--ui-height-raw)) * 1px);
+  --ui-font: calc(1rem / var(--zoom-scale));
+}
+
+body {
+  margin: 0;
+}
+
+#stage {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: white;
+}
+
+#timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-timer {
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+#controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  align-items: stretch;
+  width: calc(100% / var(--zoom-scale));
+  max-width: calc(220px / var(--zoom-scale));
+  height: var(--ui-height);
+}
+
+.input-group-field,
+.input-group .button {
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  line-height: normal;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-group-field {
+  display: flex;
+  align-items: center;
+  font-size: var(--ui-font);
+  padding: 0 calc(0.5rem / var(--zoom-scale));
+}
+
+.input-group .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--ui-font);
+  padding: 0 calc(0.75rem / var(--zoom-scale));
+}
+
+label {
+  font-size: calc(0.9rem / var(--zoom-scale));
+  margin-bottom: calc(4px / var(--zoom-scale));
+}
+
+summary {
+  margin: 0;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  font-size: 1em;
+  color: inherit;
+}
+summary::marker {
+  font-size: 1em;
+  color: inherit;
+}
+
+#timer-controls > summary {
+  position: relative;
+}
+
+#timer-controls {
+  order: 99;
+  flex: 0 0 70%;
+  width: 100%;
+  margin-top: 6px;
+}
+
+#timer-settings > summary {
+  position: relative;
+}
+
+#timer-settings {
+  order: 99;
+  flex: 0 0 60%;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.base-timer__svg {
+  transform: scaleX(-1);
+}
+
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.green {
+  color: rgb(65, 184, 131);
+}
+
+.base-timer__path-remaining.orange {
+  color: orange;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+}
+
+.base-timer__label {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid-x {
+  justify-content: center;
+}
+
+.zoom-controller {
+  bottom: 70px;
+}
