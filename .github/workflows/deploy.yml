@@ -16,14 +16,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  checkout:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
 
   deploy-github-pages:
-    needs: build
+    needs: checkout
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -42,7 +42,7 @@ jobs:
         uses: actions/deploy-pages@v5
 
   deploy-cloudflare-pages:
-    needs: build
+    needs: checkout
     environment:
       name: cloudflare-pages
       url: ${{ steps.cf_deployment.outputs.deployment-url }}
