@@ -35,7 +35,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: './V2'
+          path: 'V2'
 
       - name: Deploy to GitHub Pages
         id: deployment
@@ -54,4 +54,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./V2 --project-name=tclock
+          command: pages deploy V2 --project-name=tclock
