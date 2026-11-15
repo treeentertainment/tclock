@@ -61,12 +61,12 @@ function startTimer() {
   if (isRunning || timeLeft <= 0) return;
 
   isRunning = true;
-  deadline = Date.now() + remainingMilliseconds;
+  deadline = performance.now() + remainingMilliseconds;
   timerInterval = setInterval(updateTimer, 1000);
 }
 
 function updateTimer() {
-  remainingMilliseconds = Math.max(0, deadline - Date.now());
+  remainingMilliseconds = Math.max(0, deadline - performance.now());
   timeLeft = Math.ceil(remainingMilliseconds / 1000);
 
   document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
