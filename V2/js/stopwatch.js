@@ -28,15 +28,17 @@ function print(txt) {
 }
 
 function start() {
-  startTime = Date.now() - elapsedTime;
+  startTime = performance.now() - elapsedTime;
   timerInterval = setInterval(function printTime() {
-    elapsedTime = Date.now() - startTime;
+    elapsedTime = performance.now() - startTime;
     print(timeToString(elapsedTime));
   }, 10);
   showButton("PAUSE");
 }
 
 function pause() {
+  elapsedTime = performance.now() - startTime;
+  print(timeToString(elapsedTime));
   clearInterval(timerInterval);
   showButton("PLAY");
 }

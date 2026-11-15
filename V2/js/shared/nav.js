@@ -68,16 +68,19 @@ style.textContent = `
     .app-nav {
       top: 0;
       left: -260px;
+      visibility: hidden;
+      overflow-y: auto;
       width: 250px;
       height: 100vh;
       flex-direction: column;
       align-items: flex-start;
       padding-top: 1rem;
-      transition: left 0.3s ease;
+      transition: left 0.3s ease, visibility 0.3s;
     }
 
     .app-nav.open {
       left: 0;
+      visibility: visible;
     }
 
     .app-nav ul {

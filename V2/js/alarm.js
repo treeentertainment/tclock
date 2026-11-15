@@ -105,7 +105,6 @@ const setAlarm = () => {
 const stopAlarm = () => {
   ringtone.pause();
   ringtone.currentTime = 0;
-  $("#alarmFinished").foundation("close");
   alarmTime = "";
   isAlarmSet = false;
   content.classList.remove("disable");
@@ -114,4 +113,7 @@ const stopAlarm = () => {
 };
 
 setAlarmBtn.addEventListener("click", setAlarm);
-stopAlarmBtn.addEventListener("click", stopAlarm);
+$("#alarmFinished").on("closed.zf.reveal", stopAlarm);
+stopAlarmBtn.addEventListener("click", () => {
+  $("#alarmFinished").foundation("close");
+});

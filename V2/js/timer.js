@@ -19,7 +19,8 @@ const COLOR_CODES = {
   },
 };
 
-let timePassed = 0;
+let remainingMilliseconds = 0;
+let deadline = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
@@ -57,23 +58,24 @@ function onTimesUp() {
 }
 
 function startTimer() {
-  if (isRunning) return;
+  if (isRunning || timeLeft <= 0) return;
 
   isRunning = true;
+  deadline = Date.now() + remainingMilliseconds;
+  timerInterval = setInterval(updateTimer, 1000);
+}
 
-  timerInterval = setInterval(() => {
-    timePassed += 1;
-    timeLeft = TIME_LIMIT - timePassed;
+function updateTimer() {
+  remainingMilliseconds = Math.max(0, deadline - Date.now());
+  timeLeft = Math.ceil(remainingMilliseconds / 1000);
 
-    document.getElementById("base-timer-label").innerHTML =
-      formatTime(timeLeft);
-    setCircleDasharray();
-    setRemainingPathColor(timeLeft);
+  document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
+  setCircleDasharray();
+  setRemainingPathColor(timeLeft);
 
-    if (timeLeft <= 0) {
-      onTimesUp();
-    }
-  }, 1000);
+  if (timeLeft <= 0) {
+    onTimesUp();
+  }
 }
 
 function formatTime(time) {
@@ -132,9 +134,13 @@ function getTotalSeconds() {
 
 function initializeTimer(totalSeconds) {
   clearInterval(timerInterval);
+  timerInterval = null;
+  isRunning = false;
+  ringtone.pause();
+  ringtone.currentTime = 0;
 
   TIME_LIMIT = totalSeconds;
-  timePassed = 0;
+  remainingMilliseconds = totalSeconds * 1000;
   timeLeft = totalSeconds;
 
   document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
@@ -167,7 +173,7 @@ function resetToZero() {
   ringtone.currentTime = 0;
 
   TIME_LIMIT = 0;
-  timePassed = 0;
+  remainingMilliseconds = 0;
   timeLeft = 0;
 
   document.getElementById("base-timer-label").innerHTML = "00:00:00";
@@ -205,20 +211,25 @@ document.getElementById("pause-timer").addEventListener("click", () => {
 });
 
 function pauseTimer() {
+  if (!isRunning) return;
+  updateTimer();
   clearInterval(timerInterval);
   timerInterval = null;
   isRunning = false;
 }
 
 function resumeTimer() {
-  if (TIME_LIMIT <= 0) return;
+  if (TIME_LIMIT <= 0 || timeLeft <= 0) return;
   startTimer();
 }
 
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space") {
-    const tag = document.activeElement.tagName.toLowerCase();
-    if (tag === "input") return;
+    const target = e.target;
+    if (
+      target.isContentEditable ||
+      target.closest("input, textarea, select, button, summary, a[href], [role='button']")
+    ) return;
 
     e.preventDefault();
 
