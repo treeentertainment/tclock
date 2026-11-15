@@ -4,30 +4,12 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tclock</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Compressed CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css"
-      crossorigin="anonymous"
-    />
-
-    <!-- Compressed JavaScript -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="stopwatch.css" />
+    <title>TClock</title>
+    <script src="./js/lib/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/lib/foundation.min.css" />
+    <script src="./js/lib/foundation.min.js"></script>
+    <link rel="stylesheet" href="./css/stopwatch.css" />
+    <link rel="stylesheet" href="./css/shared/footer.css" />
   </head>
   <body>
     <div id="stage">
@@ -37,30 +19,41 @@
           <span class="time" id="display">00:00:00:00</span>
 
           <div class="controls">
-            <button class="buttonPlay">
-              <span id="playButton" class="material-symbols-outlined">
-                play_circle
-              </span>
-              <span id="pauseButton" class="material-symbols-outlined">
-                pause_circle
-              </span>
+            <button id="playButton" class="ctlBtn">
+              <img
+                src="./icons/play_circle.svg"
+                alt="Play"
+                width="48"
+                height="48"
+              />
+            </button>
+            <button id="pauseButton" class="ctlBtn" style="display: none">
+              <img
+                src="./icons/pause_circle.svg"
+                alt="Pause"
+                width="48"
+                height="48"
+              />
             </button>
 
-            <button class="buttonReset">
-              <span id="resetButton" class="material-symbols-outlined">
-                restart_alt
-              </span>
+            <button id="resetButton" class="ctlBtn">
+              <img
+                src="./icons/restart_alt.svg"
+                alt="Restart"
+                width="48"
+                height="48"
+              />
             </button>
           </div>
         </div>
       </div>
     </div>
-    <script src="zoom.js"></script>
-    <script src="nav.js"></script>
+    <script src="./js/shared/zoom.js"></script>
+    <script src="./js/shared/nav.js"></script>
     <script>
       $(document).foundation();
     </script>
-    <script src="fullscreen.button.js"></script>
-    <script src="stopwatch.js"></script>
+    <script src="./js/shared/fullscreen.button.js"></script>
+    <script src="./js/stopwatch.js"></script>
   </body>
 </html>

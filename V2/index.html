@@ -4,30 +4,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tclock</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Compressed CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css"
-      crossorigin="anonymous"
-    />
-
-    <!-- Compressed JavaScript -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="index.css" />
+    <title>TClock</title>
+    <script src="./js/lib/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/lib/foundation.min.css" />
+    <script src="./js/lib/foundation.min.js"></script>
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
     <div id="stage">
@@ -36,12 +17,12 @@
         <p id="date" class="date text-center h4"></p>
       </div>
     </div>
-    <script src="zoom.js"></script>
-    <script src="nav.js"></script>
+    <script src="./js/shared/zoom.js"></script>
+    <script src="./js/shared/nav.js"></script>
     <script>
       $(document).foundation();
     </script>
-    <script src="fullscreen.button.js"></script>
-    <script src="index.js"></script>
+    <script src="./js/shared/fullscreen.button.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>

@@ -1,0 +1,16 @@
+#alarm-settings > summary {
+  position: relative;
+}
+
+#alarm-settings {
+  order: 99;
+  flex: 0 0 40%;
+  width: 70%;
+  margin-top: 6px;
+}
+
+#minute-select,
+#hour-select,
+#ampm-select {
+  width: 100%;
+}

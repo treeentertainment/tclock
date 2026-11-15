@@ -4,25 +4,12 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tclock</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="timer.css" />
+    <title>TClock</title>
+    <script src="./js/lib/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/lib/foundation.min.css" />
+    <script src="./js/lib/foundation.min.js"></script>
+    <link rel="stylesheet" href="./css/timer.css" />
+    <link rel="stylesheet" href="./css/shared/footer.css" />
   </head>
 
   <body>
@@ -35,25 +22,50 @@
         <div id="controls">
           <details id="timer-controls" open>
             <summary>
-              <span class="material-symbols-outlined">menu</span>
-              타이머 제어
+              <img src="./icons/menu.svg" alt="menu" width="24" height="24" />
             </summary>
-            <button id="start-timer" class="button">
-              <span class="material-symbols-outlined">play_circle</span>
-            </button>
-            <button id="pause-timer" class="button">
-              <span class="material-symbols-outlined">pause_circle</span>
-            </button>
-            <button id="reset-timer" class="button">
-              <span class="material-symbols-outlined">restart_alt</span>
-            </button>
+            <div class="grid-x grid-margin-x align-middle">
+              <div class="cell auto">
+                <button id="start-timer" class="button">
+                  <img
+                    src="./icons/play_circle.svg"
+                    alt="play"
+                    width="24"
+                    height="24"
+                  />
+                </button>
+              </div>
+              <div class="cell auto">
+                <button id="pause-timer" class="button">
+                  <img
+                    src="./icons/pause_circle.svg"
+                    alt="pause"
+                    width="24"
+                    height="24"
+                  />
+                </button>
+              </div>
+              <div class="cell auto">
+                <button id="reset-timer" class="button">
+                  <img
+                    src="./icons/restart_alt.svg"
+                    alt="restart"
+                    width="24"
+                    height="24"
+                  />
+                </button>
+              </div>
+            </div>
           </details>
 
           <details id="timer-settings">
             <summary>
-              <span class="material-symbols-outlined"
-                >settings_applications</span
-              >타이머 설정
+              <img
+                src="./icons/settings_applications.svg"
+                alt="Settings"
+                width="24"
+                height="24"
+              />
             </summary>
 
             <div class="grid-x grid-margin-x align-middle">
@@ -169,12 +181,12 @@
       </div>
     </footer>
 
-    <script src="zoom.js"></script>
-    <script src="nav.js"></script>
+    <script src="./js/shared/zoom.js"></script>
+    <script src="./js/shared/nav.js"></script>
     <script>
       $(document).foundation();
     </script>
-    <script src="fullscreen.button.js"></script>
-    <script src="timer.js"></script>
+    <script src="./js/shared/fullscreen.button.js"></script>
+    <script src="./js/timer.js"></script>
   </body>
 </html>
