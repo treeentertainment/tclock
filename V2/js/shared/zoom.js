@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     :root { --zoom-scale: 1; }
 
     .zoom-controller {
-      position: fixed;
+      position: relative;
       bottom: 70px;
       left: 50%;
       transform: translateX(-50%);
@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
       z-index: 9999;
     }
 
-    /* allow scrolling when content is scaled */
     body, html {
       overflow: hidden;
     }
@@ -26,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.head.appendChild(style);
 
-  document.getElementById("container").insertAdjacentHTML(
-    "afterend",
+  document.body.insertAdjacentHTML(
+    "afterbegin",
     `
     <div class="zoom-controller text-center">
       <input
@@ -42,19 +41,19 @@ document.addEventListener("DOMContentLoaded", () => {
     `,
   );
 
-  const $container = $("#container");
-  const $range = $("#zoomRange");
+  const container = document.getElementById("container");
+  const range = document.getElementById("zoomRange");
 
   function applyZoom(value) {
     const scale = value / 100;
-    $container.css("transform", `scale(${scale})`);
+    container.style.transform = `scale(${scale})`;
     document.documentElement.style.setProperty("--zoom-scale", scale);
   }
 
-  const initial = parseInt($range.val(), 10) || 100;
+  const initial = parseInt(range.value(), 10) || 100;
   applyZoom(initial);
 
-  $range.on("input", function () {
-    applyZoom(this.value);
+  range.addEventListener("input", function (event) {
+    applyZoom(event.value);
   });
 });

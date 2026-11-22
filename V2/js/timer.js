@@ -228,8 +228,11 @@ document.addEventListener("keydown", (e) => {
     const target = e.target;
     if (
       target.isContentEditable ||
-      target.closest("input, textarea, select, button, summary, a[href], [role='button']")
-    ) return;
+      target.closest(
+        "input, textarea, select, button, summary, a[href], [role='button']",
+      )
+    )
+      return;
 
     e.preventDefault();
 

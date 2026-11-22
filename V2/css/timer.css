@@ -17,13 +17,6 @@ body {
   margin: 0;
 }
 
-#stage {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  background: white;
-}
-
 #timer {
   display: flex;
   justify-content: center;

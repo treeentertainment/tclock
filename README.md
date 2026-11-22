@@ -18,11 +18,10 @@
 
 > ## 버전
 
-
-| FILE | URL |
-|---|----|
+| FILE         | URL                                                  |
+| ------------ | ---------------------------------------------------- |
 | [✅V1](./V1) | [https://tclock.pages.dev](https://tclock.pages.dev) |
-| [❤️V2](./V2) | [https://tclock.js.org](https://tclock.js.org) |
+| [❤️V2](./V2) | [https://tclock.js.org](https://tclock.js.org)       |
 
 > ## 저작권
 

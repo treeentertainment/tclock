@@ -1,69 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   if (!(document.fullscreenEnabled || document.webkitFullscreenEnabled)) return;
-
-  const style = document.createElement("style");
-  style.textContent = `
-    #container {
-      background: white;
-    }
-    .toggle-fullscreen-btn {
-      position: fixed;
-      z-index: 10000;
-      top: 10px;
-      right: 10px;
-      border: 0;
-      padding: 0;
-      background: none;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .toggle-fullscreen-svg {
-      display: block;
-      height: auto;
-    }
-
-    .toggle-fullscreen-svg path {
-      transform-box: view-box;
-      transform-origin: 12px 12px;
-      fill: none;
-      stroke: hsl(225, 10%, 8%);
-      stroke-width: 4;
-      transition: 0.15s;
-    }
-
-    .toggle-fullscreen-btn:hover path:nth-child(1),
-    .toggle-fullscreen-btn:focus path:nth-child(1) {
-      transform: translate(-2px, -2px);
-    }
-
-    .toggle-fullscreen-btn:hover path:nth-child(2),
-    .toggle-fullscreen-btn:focus path:nth-child(2) {
-      transform: translate(2px, -2px);
-    }
-
-    .toggle-fullscreen-btn:hover path:nth-child(3),
-    .toggle-fullscreen-btn:focus path:nth-child(3) {
-      transform: translate(2px, 2px);
-    }
-
-    .toggle-fullscreen-btn:hover path:nth-child(4),
-    .toggle-fullscreen-btn:focus path:nth-child(4) {
-      transform: translate(-2px, 2px);
-    }
-
-    .toggle-fullscreen-btn:not(.on) .icon-fullscreen-leave {
-      display: none;
-    }
-
-    .toggle-fullscreen-btn.on .icon-fullscreen-enter {
-      display: none;
-    }
-  `;
-  document.head.appendChild(style);
-
-  document.getElementById("stage").insertAdjacentHTML(
-    "beforeend",
+  document.body.insertAdjacentHTML(
+    "afterbegin",
     `
     <button
       class="js-toggle-fullscreen-btn toggle-fullscreen-btn"

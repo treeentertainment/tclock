@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="./css/lib/foundation.min.css" />
     <script src="./js/lib/foundation.min.js"></script>
     <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="./css/alarm.css" />          
-    <link rel="stylesheet" href="./css/shared/footer.css" />      
+    <link rel="stylesheet" href="./css/alarm.css" />
+    <link rel="stylesheet" href="./css/shared/footer.css" />
   </head>
   <body>
     <div id="stage">
@@ -18,8 +18,8 @@
       <div class="grid-container container" id="container">
         <div class="grid-x grid-padding-x align-center">
           <div class="cell small-12 text-center">
-            <p id="time" class="time h1"></p>
-            <p id="date" class="date h4"></p>
+            <p id="time" class="time h1"> : : 오후</p>
+            <p id="date" class="date h4">년 월 일</p>
           </div>
 
           <details id="alarm-settings">
@@ -32,47 +32,49 @@
               />
             </summary>
 
-          <div class="cell small-10 medium-8 large-6">
-            <form>
-              <div class="grid-x grid-margin-x align-middle content">
-                <div class="cell small-4">
-                  <label class="show-for-sr">시</label>
-                  <select id="hour-select" aria-label="시">
-                    <option value="" selected disabled hidden>시</option>
-                  </select>
+            <div class="cell small-10 medium-8 large-6">
+              <form>
+                <div class="grid-x grid-margin-x align-middle content">
+                  <div class="cell small-4">
+                    <label class="show-for-sr">시</label>
+                    <select id="hour-select" aria-label="시">
+                      <option value="" selected disabled hidden>시</option>
+                    </select>
+                  </div>
+
+                  <div class="cell small-4">
+                    <label class="show-for-sr">분</label>
+                    <select id="minute-select" aria-label="분">
+                      <option value="" selected disabled hidden>분</option>
+                    </select>
+                  </div>
+
+                  <div class="cell small-4">
+                    <label class="show-for-sr">오전/오후</label>
+                    <select id="ampm-select" aria-label="오전/오후">
+                      <option value="" selected disabled hidden>
+                        오전/오후
+                      </option>
+                      <option value="오전">오전</option>
+                      <option value="오후">오후</option>
+                    </select>
+                  </div>
                 </div>
 
-                <div class="cell small-4">
-                  <label class="show-for-sr">분</label>
-                  <select id="minute-select" aria-label="분">
-                    <option value="" selected disabled hidden>분</option>
-                  </select>
+                <div class="grid-x grid-margin-x align-center">
+                  <div class="cell shrink">
+                    <button
+                      type="button"
+                      class="button primary"
+                      id="set-alarm"
+                      disabled
+                    >
+                      알림 설정
+                    </button>
+                  </div>
                 </div>
-
-                <div class="cell small-4">
-                  <label class="show-for-sr">오전/오후</label>
-                  <select id="ampm-select" aria-label="오전/오후">
-                    <option value="" selected disabled hidden>오전/오후</option>
-                    <option value="오전">오전</option>
-                    <option value="오후">오후</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="grid-x grid-margin-x align-center">
-                <div class="cell shrink">
-                  <button
-                    type="button"
-                    class="button primary"
-                    id="set-alarm"
-                    disabled
-                  >
-                    알림 설정
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+              </form>
+            </div>
           </details>
         </div>
 
